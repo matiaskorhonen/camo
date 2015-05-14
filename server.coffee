@@ -267,4 +267,8 @@ server = Http.createServer (req, resp) ->
 
 console.log "SSL-Proxy running on #{port} with pid:#{process.pid} version:#{version}."
 
-server.listen port
+if (typeof(PhusionPassenger) != 'undefined') {
+    server.listen('passenger');
+} else {
+    server.listen(port);
+}
